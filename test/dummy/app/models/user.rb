@@ -1,4 +1,3 @@
 class User < ActiveRecord::Base
-	include Authist::Authorizable
-
+	include Authist::Authism
 end
