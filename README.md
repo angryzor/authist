@@ -14,11 +14,11 @@ Usage
 =====
 In order to use Authist in your rails application, first add Authist to your gemfile:
 
-  gem 'authist'
+    gem 'authist'
 
 Next, install the core migrations and initializer into your application:
 
-  rails generate authist:install
+    rails generate authist:install
 
 This will create a new migration in db/migrate and an initialize in config/initializers.
 
@@ -27,10 +27,10 @@ model exposes a `has_access?` function which allows you to check whether it has 
 have a user grouping system in your application, for example, a UserGroup could also be an authist.
 In order to create an authist, you first need an existing model class. Next, you simply run the authist generator:
 
-  rails generate authist <ClassName>
+    rails generate authist <ClassName>
 
 This simply adds the following line to your model:
 
-  include Authist::Authism
+    include Authist::Authism
 
 You can now 
