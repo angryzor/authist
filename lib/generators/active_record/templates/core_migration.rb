@@ -2,6 +2,7 @@ class CreateAuthisticBehaviour < ActiveRecord::Migration
   def change
     create_table :roles do |t|
       t.string :name
+      t.string :description
     end
 
     create_table :role_subscriptions do |t|

@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Ruben 'angryzor' Tytgat"]
   s.email       = ["ruben_tytgat@hotmail.com"]
   s.homepage    = "http://github.com/angryzor"
+  s.license     = "MIT"
   s.summary     = "A Rails plugin for simple and unintrusive controller-level authorization."
   s.description = <<DESC
 Authist is a Ruby on Rails plugin that provides a simple way to add role-based authorization to your application.
@@ -28,6 +29,6 @@ DESC
 
   s.add_dependency "rails", "~> 4.0"
 
-  s.add_development_dependency "sqlite3"
-  s.add_development_dependency "rspec"
+  s.add_development_dependency "sqlite3", "~> 1.3"
+  s.add_development_dependency "rspec", "~> 3.1"
 end

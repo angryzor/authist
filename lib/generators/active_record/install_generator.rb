@@ -5,7 +5,7 @@ module ActiveRecord
     class InstallGenerator < Rails::Generators::Base
       include ActiveRecord::Generators::Migration
 
-      source_root File.expand_path("../../templates", __FILE__)
+      source_root File.expand_path("../templates", __FILE__)
 
       desc "Creates the core Authist ActiveRecord migrations."
       
