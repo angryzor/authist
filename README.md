@@ -35,9 +35,11 @@ In order to create an authist, you first need an existing model class. Next, you
 
 This simply adds a module inclusion to your model:
 
-    class User
-      include Authist::Authism
-    end
+```ruby
+class User
+  include Authist::Authism
+end
+```
 
 You can now use this model as an authist:
 
@@ -80,15 +82,17 @@ or define/override it in the more specific Controllers to decide what happens wh
 
 You can then use the helpers in your before_filters:
 
-    class CommentsController < ApplicationController
-      before_action :find_comment
-      before_filter -> { access_required :blog_administration }, only: [:destroy]
-      before_filter -> { user_or_access_required @comment.author, :blog_administration }, only: [:edit,:update]
+```ruby
+class CommentsController < ApplicationController
+  before_action :find_comment
+  before_filter -> { access_required :blog_administration }, only: [:destroy]
+  before_filter -> { user_or_access_required @comment.author, :blog_administration }, only: [:edit,:update]
 
-      def unauthorized_access
-        render json: { status: "error", message: "You do not have sufficient access for this operation." }
-      end
-    end
+  def unauthorized_access
+    render json: { status: "error", message: "You do not have sufficient access for this operation." }
+  end
+end
+```
 
 Here are all the available helpers:
 
@@ -103,29 +107,33 @@ These helpers can be disabled in the Authist initializer.
 
 User Groups
 ===========
-In very advanced systems, User Groups may be used. In these kinds of systems, both users and user groups can often have roles assigned,
+In advanced systems, User Groups may be used. In these kinds of systems, both users and user groups can often have roles assigned,
 where the user's roles override the group's roles. This section shows how to implement role-base authorization for such a system with Authist.
 
 First, create a UserGroup model and make it an Authist:
 
-    class UserGroup
-      include Authist::Authism
+```ruby
+class UserGroup
+  include Authist::Authism
 
-      has_many :users
+  has_many :users
 
-    end
+end
+```
 
 Now, create a User model and make it an Authist as well. You can then override its has_access? method to also check the user groups access roles.
 
-    class User
-      include Authist::Authism
+```ruby
+class User
+  include Authist::Authism
 
-      belongs_to :user_group
+  belongs_to :user_group
 
-      def has_access? type
-        super type or user_group.has_access? type
-      end
-    end
+  def has_access? type
+    super type or user_group.has_access? type
+  end
+end
+```
 
 That's all there is to it!
 
