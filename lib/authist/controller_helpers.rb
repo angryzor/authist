@@ -17,15 +17,15 @@ module Authist
 			truth_required current_user == user
 		end
 
+		def untruth_required clause
+			truth_required !clause
+		end
+
 		def truth_required clause
 			unless clause
 				unauthorized_access
 				false
 			end
-		end
-
-		def unauthorized_access
-			redirect root_path
 		end
 	end
 end

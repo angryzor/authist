@@ -31,4 +31,5 @@ DESC
 
   s.add_development_dependency "sqlite3", "~> 1.3"
   s.add_development_dependency "rspec", "~> 3.1"
+  s.add_development_dependency "pry-rails", "~> 0.3"
 end
