@@ -166,7 +166,9 @@ Roles can be defined at runtime by creating instances of the `Authist::Models::R
 default so your master admin can access the website though. For this, you can use the database seeds file (`db/seeds.rb`).
 Below is an example configuration seed using the example access types from the previous section:
 
-    user_administrator = Authist::Models::Role.create name: 'User administrator', user_administration: true
-    blog_administrator = Authist::Models::Role.create name: 'Blog administrator', blog_administration: true
+```ruby
+user_administrator = Authist::Models::Role.create name: 'User administrator', user_administration: true
+blog_administrator = Authist::Models::Role.create name: 'Blog administrator', blog_administration: true
 
-    User.create username: 'superadmin', roles: [user_administrator, blog_administrator]
+User.create username: 'superadmin', roles: [user_administrator, blog_administrator]
+```
