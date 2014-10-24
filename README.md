@@ -143,3 +143,30 @@ That's all there is to it!
   that no rule was found, which would also coerce to false in standard if checks. The Users and Roles could then check for nil specifically,
   and override true in a group with false in a User, but not override true in a group with nil in a User.
 -->
+
+<!---
+  Comment to self: It feels annoying to not have control over the roles
+-->
+
+Adding Access Types
+===================
+Access types are symbols that specify an atomic kind of access. You will check if users have access of these types in your controllers (see above).
+Access types are defined at development time and can be any valid database column name except `name`, `created_at` and `updated_at` (they are simply stored
+as columns in the roles table). Example access types could be `:user_administration`, `:blog_administration`, `:order_administration`, etc.
+
+To create the migration for a new access type, simply run
+
+    rails generate authist:access_type my_access_type
+
+and migrate the database.
+
+Adding roles
+============
+Roles can be defined at runtime by creating instances of the `Authist::Models::Role` model. You will want to have a few basic roles defined by
+default so your master admin can access the website though. For this, you can use the database seeds file (`db/seeds.rb`).
+Below is an example configuration seed using the example access types from the previous section:
+
+    user_administrator = Authist::Models::Role.create name: 'User administrator', user_administration: true
+    blog_administrator = Authist::Models::Role.create name: 'Blog administrator', blog_administration: true
+
+    User.create username: 'superadmin', roles: [user_administrator, blog_administrator]
