@@ -10,7 +10,9 @@ module Authist
 		yield self
 
 		unless disable_controller_extensions
-			ApplicationController.include ControllerHelpers
+			ActiveSupport.on_load :action_controller do
+				include ControllerHelpers
+			end
 		end
 	end
 end
